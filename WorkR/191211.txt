@@ -1,0 +1,92 @@
+Data Mining : 의사결정을 위해서 DB로부터 규칙과 패턴을 발견하는 기법
+* DB -> 정형화 data
+
+Text Mining(자연어 처리) :  text data로부터 규칙과 패턴을 발견하는 기법. 자료 처리 과정과 자료 분석 과정.
+* text : 비정형 data -> 일반적인 data mining 기법으로  text mining을 하기엔 어려움. (비정형 데이터라서)
+=> word cloud ( 자연어 처리 시각화 도구 ) : 단어 '빈도수' 표현 ( 주로 명사 단위로 추출 )
+* 빈도가 높으면 글자가 크고, 낮으면 작음.
+
+text file에서 내용 맨 마지막 줄 다음에 공백란이 없으면 읽어올 때 error 남.
+-> 맨 마지막 줄 다음에 enter 쳐서 공백 줄 만들기. ( 한 줄 이상 )
+
+* buildDictionary( ext_dic = 'woorimalsam' ) # '우리말씀' 한글사전 로딩 <- 1. yes 2. no 에서 1 선택
+
+
+		         Response
+		  (HTML으로 결과 반환)
+		         --------->
+	server				client
+		         <---------
+		          Request
+  	             (Get/Post 방식으로 요청)
+       - IP address
+        (networkd 식별)
+       - MAC address
+        (hw적으로 식별)
+
+        PORT Number
+        (process 식별)
+
+       역할 : 응답 '대기'			'요청'
+
+
+
+DNS ( Domain Name System )
+통신 -> Protocol( 규약, 약속 )이 필요
+
+web protocol -> HTTP ( hyper text transfort(?) protocol ) : header & body
+  * GET 방식  => HTTP Header에 data를 담아서 전송 
+	단점 ) 	1. 헤더 크기가 작아서 데이터 전송 크기가 정해져 있다. : 헤더 사이즈 못 넘김
+		2. 보안성 없음.
+  * Post 방식 => HTTP Body에 data를 담아서 전송
+장점 ) 데이터 사이즈 제한 없음, header에 비해 보안성이 높음
+
+** HTML 구조 **
+<html>
+  <head> </head>
+    <body> : 시작 태그
+        <H1>   </H1>
+    </body> : 끝 태그
+</html>
+
+
+*** web scrapping ***
+: html의 body 영역을 스크랩 하는 것
+* bank salad도 web scrapping을 씀.
+
+
+
+* get 방식
+: 'https://search.naver.com/search.naver?sm=top_hty&fbm=1&ie=utf8&query=%EC%A0%9C%EC%A3%BC' 처럼 데이터가 주소에 보임.
+
+*post 방식 - 안 보임
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
