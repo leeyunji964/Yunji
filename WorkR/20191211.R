@@ -38,7 +38,7 @@ noun
 # 4. 추출된 단어( 주로 명사 )에 대한 빈도수 계산 및 시각화
 noun2 <- unlist( noun ) # list -> vector로 변환
 wordcount <- table( noun2 ) 
-#wordcount
+wordcount
 sort.noun <- sort( wordcount, decreasing = T )[1:10]
 # 빈도가 높은 순으로 정렬, 데이터가 많으니까 데이터 셋에서 10개만 추출
 sort.noun

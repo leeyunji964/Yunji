@@ -209,11 +209,19 @@ on <- unlist(obama.noun); on
 owordcount <- table(on)
 sort.obama <- sort( owordcount, decreasing = T )
 sort.obama <- sort.obama[-1]
-head(sort.obama)
+sort.obama
 
-owordcount
+sort.obama <- sort.obama[ nchar(sort.obama) > 1 ]
+sort.obama <- gsub('것','',sort.obama)
+sort.obama <- gsub('저','',sort.obama)
+sort.obama <- gsub('들','',sort.obama)
+sort.obama <- gsub('수','',sort.obama)
+sort.obama <- gsub('한','',sort.obama)
+sort.obama <- gsub('시','',sort.obama)
+sort.obama <- gsub('년','',sort.obama)
+sort.obama <- gsub('되','',sort.obama)
 
-wordcloud( names(owordcount), freq = owordcount,
+wordcloud( names(sort.obama), freq = sort.obama,
            min.freq = 3, scale = c( 9, 0.7 ),
            random.order = F, rot.per = 0.2, colors = pal2)
 wordcloud2( owordcount, color = 'random-light',
