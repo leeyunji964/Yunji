@@ -26,10 +26,10 @@ INSERT INTO purchase VALUES(12,'BBK','운동화','서적',30,2);
 SELECT * FROM purchase WHERE userID='BBK';
 
 # 2) 김씨인 사람 중 이름과 키를 기준으로 이름, 키, 주소를 내림차순으로 출력하시오(이름 뒤에는 '님'을 붙여서 출력)
-SELECT concat(NAME,'님') AS 이름, height AS 키, addr AS 주소 FROM user WHERE NAME LIKE '김%' ORDER BY NAME, height DESC;
+SELECT concat(NAME,'님') AS 이름, height AS 키, addr AS 주소 FROM user WHERE NAME LIKE '김%' ORDER BY NAME desc, height DESC;
 
 # 3) user를 출생년도별 오름차순으로 이름, 주소, 키, 출생년도를 출력하시오 (이름은 성을 빼고 출력)
-SELECT substr(NAME,2,3), addr, height, birthYear FROM user ORDER BY birthYear;
+SELECT substr(NAME,2) AS name, addr, height, birthYear FROM user ORDER BY birthYear;
 
 # 4) 모바일 번호가 011로 시작하는 사람이 몇 명인지 출력하시오
 SELECT COUNT(*) FROM user WHERE mobile1='011';
@@ -38,17 +38,17 @@ SELECT COUNT(*) FROM user WHERE mobile1='011';
 SELECT prodName FROM purchase inner join user on user.userID = purchase.userID and birthYear BETWEEN 1960 AND 1979;
 #SELECT distinct(prodName) FROM purchase inner join user on user.userID = purchase.userID and birthYear BETWEEN 1960 AND 1979;
 
-# 6) UserID별로 구매한 price.amount 합계를 출력하시오 (이 때 userID는 name으로 출력하시오)
-SELECT userID as NAME, SUM(price) AS 총액  FROM purchase GROUP BY UserID;
+# 6) UserID별로 구매한 price,amount 합계를 출력하시오 (이 때 userID는 name으로 출력하시오)
+SELECT userID as NAME, SUM(price), sum(amount) AS 총액  FROM purchase GROUP BY UserID;
 
 # 7) 주소가 서울인 사람이 구매한 총액을 구하시오
-SELECT SUM(price) FROM purchase inner join user on user.userID=purchase.userID and addr='서울';
+SELECT SUM(price*amount) AS '총액' FROM purchase inner join user on user.userID=purchase.userID and addr='서울';
 
 # 8) 품목별 판매 총액을 출력하시오
-SELECT prodName, SUM(price) AS '판매 총액' FROM purchase GROUP BY prodName;
+SELECT prodName, SUM(price*amount) AS '판매 총액' FROM purchase GROUP BY prodName;
 
-# 9) 출생년도가 1970년도 이상인 사람들을 대상으로 구매한 갯수가 2개 이상인 것의 판매 총합계를 구하시오 - 서브 쿼리
-SELECT SUM(p.price) FROM purchase AS p INNER JOIN user AS u ON u.userID=p.userID AND u.birthYear>=1970 AND p.amount>=2;
+# 9) 출생년도가 1970년도 이상인 사람들을 대상으로 구매한 갯수가 2개 이상인 것의 판매 총합계를 구하시오
+SELECT SUM(p.amount*p.price) AS '판매 총합계'  FROM purchase AS p INNER JOIN user AS u ON u.userID=p.userID AND u.birthYear>=1970 AND p.amount>=2; 
 
 # 10) 모든 유저를 출력하시오(이름 중에 김씨와 조씨는 모두 컬씨로 바꾸어 출력)
 select (case when NAME LIKE '김%' OR NAME LIKE '조%' then CONCAT('컬',SUBSTR(NAME,2)) ELSE NAME END) AS NAME FROM user;
