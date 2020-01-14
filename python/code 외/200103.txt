@@ -1,0 +1,82 @@
+리눅스  os
+
+[marai db]
+- DDL(Create, Add, Drop)
+- DML(Select, Update, Insert, Delete)
+- DCL(Grant,Revoke)
+- TCL(transaction, commit, SavePoint, rollback)
+
+** primary key - foreign key **
+join -> inner / outer
+
+부수적 기능 - db 서버에서 제공해주는 기능
+1. trigger
+2. stored procedure
+3. event
+4. view
+↑를 갖고오는 기능 : pymysql -> connect 해줘야 함. -> cursor를 얻어야 함. => record set => fetch(데이터 하나씩 패치)
+( ** 내가 처리할 데이터를 한꺼번에 갖고와서 별도의 집단을 만들어놓고 처음부터 커서가 데이터의 시작 위치를 가리키는 것 )
+
+db에 영향을 미치는 명령어 - update,insert,delete : 꼭 commit 실행!(자동으로 transaction이 실행되고 있기 때문)
+
+fetch one/many/all
+
+pymysql, html5, css3, javascript => flask web server 
+(동적 효과를 보여주기 위해서 javascript 사용, css만 있으면 정적 ..)
+Django, Javaspring, +하나 더,, =>  어플리케이션 ㅓ버
+아파치, ㅇ렌진엑스,iif
+
+크롤링
+
+
+
+아이피 : 192.168.1.184 
+
+vi resolv.conf
+esc :q! : 나가기
+cd ~ : 홈 디렉터리로 이동
+
+yum install maraidb-server
+su : super user
+ctrl + c : 빠져나가기
+systemctl start mariadb
+systemctl status mariadb
+
+비번 : acorn1234
+
+
+Remove anonymous users? 아무나 들어오게 하겠느냐? : N
+Disallow root login remotely? 원격? Y
+Remove test database and access to it? : 테스트 데이터 삭제 : Y
+Reload privilege tables now? : 권한 테이블 재로딩? : Y
+
+mysql -u root(아이디) -p (비밀번호는 그 아래줄에 치게 나옴)
+
+show databases;
+grant all privileges on *.*(모든 필드, 모든 데이터) to 'root'@'%' identified by '비밀번호' with grant option;
+: 모든 권한을 주겠다. / 모든 데이타베이스, 모든 테이블에 대한 / to -> root에게, '%' = 아이피, 어디서 접근하더라도 권한을 준다..
+identified by :루트가 이 비밀번호를 갖고 들어올 때 / grant option을 갖고 들어온다 -> 루트가 다른 사람에게 권한을 이전할 수도 있다.
+
+flush privileges;
+
+firewall-cmd --permanent --zone=public --add-port=3306/tcp : port 3306번을 영구적으로 열어라
+
+firewall-cmd --list-all : 현재 포트(ports)가 개방된 게 보임 -> 근데 안 보여(3306이 안 적힘)
+firewall-cmd --reload
+다시 list all
+
+systemctl restart firewalld : 방화벽을 다시 실행하라(d = 뒤에) 뒤에..? 가 무슨 뜻..?
+systemctl enable mariadb : 리눅스가 껐다 켜지더라도 마리아 디비가 자동으로 실행되라
+
+어제 jeju.sql로 보냈던거 하이디 뭐시기에서 '리눅스' db 생성하고 불러오기
+그후에 데이터베이스 acronschool 생성(general_ci)
+
+아나콘다 cmd에서 pip install pymysql 
+
+아나콘다 실행
+
+
+
+
+
+

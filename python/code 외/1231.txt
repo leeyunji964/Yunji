@@ -1,0 +1,47 @@
+acorn1234Q!
+ip addr show
+
+ifconfig
+shoutdown -h now
+firewall-cmd --permanent --zone=public
+ --add-port=22/tcp
+firewall-cmd --list-services
+
+yum install openssh-clients
+
+cd /etc
+cd sysconfig
+cd network-scripts
+vi ifcfg-enp03
+
+systemctl get-default # 현재모드
+systemctl set-default multi-user.target # test 모드
+reboot
+shoutdown -h now # 시스템 종료
+
+ps -ef  # 현재 메모리에 실행되는 내용 확인할 수 있음
+
+cd  = change directory
+mkdir = make directory
+rmdir = remove directory
+cd ~ = 루트 디렉터리로 이동
+cp  = copy
+rm = remove : 파일 삭제시 사용
+find = 파일 위치를 잊어버렸을 때
+ex) find / -name test.txt -print : 루트에서 test.txt를 찾아라. 그리고 출력해라
+
+vi = 1. 명령행 모드     2.입력모드      3. : 실행명령
+	dd 삭제, yy 복사, p 붙여넣기
+	i(insert), a(append), o
+	:q 종료, w 저장, q! 저장하지 않고 종료
+
+yum 패키지 설치 : rpm을 래퍼
+ex)  maria db 설치 => yum install maria-server
+# 서버를 관리하기 위해서 (text모드로 작업)
+
+systemctl : 서비스를 제어
+firewall-cmd : 방화벽
+systemctl start mariadb : 마리아 디비 실행
+systemctl stop mariadb : 실행 종료
+systemctl restart mariadb : 다시 실행 ( 세팅이 변경 )
+ps -ef  |  grep httpd : 웹서버가 켜져있는지(실행 중인지) 확인 

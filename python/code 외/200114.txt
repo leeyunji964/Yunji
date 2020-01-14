@@ -1,0 +1,17 @@
+Decision Tree - 데이터가 강건 : 시각화 지원 (white box), 변수중요도 출력(feature select 대신에 쓸 수 있음), but 과적합 될 수 있고,
+변수의 순서가 바뀌면 결과값도 바뀜.
+
+분류기일 때 -> 투표 ( 랜덤포레스트, ㅡ시간이 너무 오래걸림-> 아다 부스트 : 
+.gradian ???? poosst
+
+
+
+<Anadonda prompt >
+conda install -c conda-forge graphviz
+conda install -c conda-forge python-graphviz
+pip install pydot
+pip install pydotplus
+
+4개 설치
+
+conda install py-xgboost

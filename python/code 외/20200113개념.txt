@@ -1,0 +1,59 @@
+2020 - 01- 13 (월)
+
+사이키트
+scikits machine learning - deep learning 요소 조금 있음 ( 오늘은 안 함 , gpu도 안 함(분산 처리 = 고속으로 데이터 처리) ) <- 한 사람이 관리해서 인터페이스의 일관성을 갖고 있어야 함.
+: 시간이 지나면 필요없는 건 deprecate 시킴. (없어짐) - estimator(추정기)를 갖고 있음. ( = transfomer(전처리) : 작동하는 건 fit, predict하고 transform ) 
+* pandas와 통일
+
+사이키트 ->  있는 모델에 파라미터를 추가하는 것. : y = ax + b라면 a,b를 추정하겠다(?)
+tensorflow : 복잡한 문제를 해결할 때 사용
+
+사이키트 : "문제를 발견하고 해결하기 위한 도구"
+=> 1. simulation : 
+2. optimization : 수리적으로 최적화 진행
+3. data mining : 데이터 속에서 규칙을 발견하는 것. <- 사이킷에서 규칙을 만든다하면 이것!
+
+[ 3차 산업 - 데이터 생성, 4차 산업 - 의사결정을 위해 데이터 속에서 규칙을 발견/분석 ]
+
+
+data를 통해 모델을 만들어 이 데이터의 일반적인 모델을 만듦. ( 일반화된 문제 해결 generalization )
+-> 과대적합( 그 데이터가 모델에 너무 과하게 적합이 되서 분산이 더 커지는 현상 )이 될 수 있따.
+[* bias : 타켓에서 멀어진 것, varience : 각 데이터들의 차]
+
+model을 만들어서=>
+1. classification(분류) ( 내일 )
+2. regression(예측) !! ( 오늘 )
+3. clustering(군집)
+
+model의 종류
+1. 정보기반 : Decision Tree -> Randomforest, 아다부스트(Ada boost), 그래디안부스트, XG boost(그래디안부스트 + gpu, 다중어 처리), 앙상블/stack model
+2. 확률기반 : naiv bays(베이지 정리를 이용해서 텍스트마이닝 할 때 많이 사용 * 속도가 빠름) -> 나중에 rnn과 만남.. 
+3. 유사도 기반 : knn, kmeans, 추천(recommendation) - 모레
+3. 오차 기반 : ann, svm(support vector machine) - 글피
+
+* 어떤 모델을 써서 어떤 결과를 도출 할 건지까지 .. 작성
+
+
+=> 이 모델들이 잘 운영해서 결과를 내려면 Data가 좋아야 함. : 모든 경우의 수가 있는 데이터 => 그래야 대표성이 있는 데이터... -> 어떤 게? : 전체 표본에서 무작위로 추출. ( 사람의 판단이 들어가야 함 )
+=> feature engineering( 그 중 우리가 지금까지 한게 전처리, 변형(transformation))
+* 전처리 중에서 한 건 [ 결측치 처리- drop, fillin, zero, mean, 특성유사도-> knn      /  이상치 - filtering(IQR*1.5 = 2.65정도)   /   범주화 - cut, qcut(일정한 사이즈(개수)로 자름), getdummies(one-hot-encoding)
+정규화 - min-max, 집정수, robust, normalization(방향값이 중요한 경우) / transfomation -> select( 1. model select - training data, test data 필요 : 나누는 이유 - 훈련 데이터로 모델을 만들면 그거에 특화된(과대적합된) 모델 생성. 그래서 training data 사용시 적합률이 높음. 그래서 일반화하기 위해서 테스트할 땐 test data 사용.
+validation data?까지 등장.. 그래서 모델 검정. => 어떻게 나눌 것인가? : " k-fold "
+2.variable(변수) select - 변수 중요도를 따짐. : 상관계수로 알아봤음. "독립변수가 종속변수에 얼마나 영향을 미치는가?" -> 변수가 중요한 순서대로 ( 분산이 큰 순서대로 )..
+3.특성 추출 (feature extraction) - filtering, data 요약, arrange : 에러가 있거나 오류가 있거나 한 데이터를 걷어내주는 것. : FA(요인분석), PCA(주성분분석), MDS(다차원척도법) ] - 상관계수 행렬이나 공분산 행렬 <- 왜 구함? 변수 중요도를 알아보기 위해! 자기들(독립변수들)끼리 상관관계가 있는지?!(다중공선성) 
+자기상관성
+
+** 사이키트는 엄청난 양의 함수를 지원함.
+
+다중공선성을 갖고 있는 데이터..
+1. 라쏘 Lasso
+2. 잇지 Ridge : 차의 제곱
+3. 엘라스틴넷 Elastinenet? : 1과 2를 모두 
+
+regulization 규제 : <- 하는 이유 : 과대적합 방지
+
+[평가]
+분류의 평가 -> 정분류, 정밀도, 재행률, 특이도
+예측의 평가 -> 예측값과 실제값의 상관계수, MSZ( (예측치-실제값)^2 <- 이걸 최대한 줄이기 )
+군집의 평가 -> 
+

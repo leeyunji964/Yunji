@@ -1,0 +1,26 @@
+1차 - 데이터를 정하고 목적 정하기 : 어떤 데이터가 필요한지
+feature engineering
+
+정보기반 학습 : one-hot-encoding
+
+
+feature engineering
+1. 전처리       : 결측치 처리(-> 결측치 제거(좋은 방법은 아니지만 데이터가 많을 땐 해도 됨)/ 평균값으로 대체(유사도를 기반으로 해서 대체) : 별도 패키지 사용 / 0로 대체 : fill na)
+	        이상치 처리 : 3사분위-1사분위 : IQR => *1.5 -> 상/하한치 (*무조건 상/하한치를 없애는 건 아님. 판단해서!) => filter의 boolean index 사용 : ㅁ > 0   / ㅁ < 0 처럼 조건을 줘서 사용해야 함.  ex) df.(a<10)
+	        범주화 : 1. 남/여를 0/1로 주는 경우(categorical), 2. getdummy()함수 : 
+	        정규화 : 리맥스 정규화? 집정수 정규화(확률을 알아볼 때 쓰는 것), robust 정규화, normalization 정규화( sqrt( (a^2+b^2+c^2) / num) )
+	        시각화(EDA)
+2. 변환? 변화? :  deplyr 패키지 , transformation - select, filter, 요약(groub by, crosstab(교차분석표 -> apply), fivot(데이터의 변화 X), fivot table(집계함수 사용), aggregation(집계함수 - sum, mean, max/min, first/last ... ), arrange
+
+* 함수를 적용시키는 함수 : map, apply, applymap
+map - Series에 적용
+apply - 열행으로 직교? dataframe에서.
+applymap = 열별로 각 요소에다가 영향을 주는 것.
+
+*
+sort_value : 내부에 저장된 값으로 정렬
+sort_index : 인덱스 별로 저장된 값으로 정렬
+
+* index 中 계층형 인덱스
+파일 => 로딩 전처리
+db - maria db에 저장하고 가져오기까지..

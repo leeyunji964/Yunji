@@ -1,0 +1,79 @@
+{% block explain_contents %}
+  <h5>영화 리스트 </h5>
+  <table>
+   <form name="myForm" id="myForm">
+    <tr>
+      <td> 제목 : <input type="text"   id="title1" name="title1"  size="10"></td>
+      <td> 장르 : <input type="text"   id="genre1" name="genre1"  size="10"></td>
+      <td> 개봉일 : <input type="date"   id="date1"  name="date1"   size="10"></td>
+      <td> 상영 시간 : <input type="number"   id="runtime1"  name="runtime1"   size="10"></td>
+      <td> 개봉국 : <input type="text" id="country1"   name="country1"    size="10"></td>
+      <td> 관람 등급 : <input type="text"   id="grade1"  name="grade1"   size="10"></td>
+      <td> 관객 수 : <input type="number"   id="count1"  name="count1"   size="10"></td>
+      <td> <button type="button" id="insertBtn"> 영화  등록</button> </td>
+    </tr>
+   </form>
+  </table>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>번호</th> <th>제목</th> <th>장르</th> <th>개봉일</th> <th>상영 시간</th> <th>개봉국</th> <th>관람 등급</th> <th>관람객 수</th>
+          <th>편집</th> <th>삭제</th>
+      </tr>
+    </thead>
+    <tbody>
+     {% for movie in object_list %}
+    <tr>
+         <td>{{ movie[0] }}</td>  <td>{{ movie[1] }} </td> <td>{{ movie[2] }}</td>  <td>{{ movie[3] }}</td>
+         <td>{{ movie[4] }}</td>  <td>{{ movie[5] }} </td> <td>{{ movie[6] }}</td>  <td>{{ movie[7] }}</td>
+         <td><button type="button" id="updateBtn{{ movie[0] }}" name= '{{ movie[0] }}'>영화 수정</button></td>
+   <script>
+    $('#updateBtn{{ movie[0] }}').click(function(){
+
+      $('#title').val($(this).attr("title"));
+
+      $.ajax({
+     url : '{{url_for('movie_Act')}}',
+     type : 'put',
+     data : $('#myForm').serialize() ,
+     success : function(res){
+       let data = JSON.parse(res);
+       if(data.rows > 0){
+      alert('수정 완료');
+      location.reload();
+       }
+       else{
+      alert('실패');
+       }
+     }
+      });
+    });
+   </script>
+         <td><button type="button" id="deleteBtn{{ movie[0] }}" title='성적' name= '{{ movie[0] }}'>영화 삭제</button></td>
+   <script>
+   $('#deleteBtn{{ movie[1] }}').click(function(){
+    if( confirm( $(this).attr("title") + "데이터를 삭제 하시겠습니까?")){
+      $.ajax({
+        url : "{{url_for('movie_Act')}}",
+        type : 'delete',
+        data : {id: $(this).attr("title")},
+        success : function(res){
+       let data = JSON.parse(res);
+       if(data.rows > 0){
+         alert('삭제 완료');
+         location.reload();
+       }
+       else{
+         alert('실패');
+       }
+        }
+     });
+     }
+   });
+   </script>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+{% endblock explain_contents %}

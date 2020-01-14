@@ -1,0 +1,45 @@
+수업 내용 요약
+1. pipeline (= chaining : 앞에 함수가 처리한 내용을 다음 함수로 전달해 주는 것)
+-> 전처리 한 것을 다음 모델로 넘기는 것
+왜 해 ? : 트레인 데이터와 테스트 데이터가 분리되기 때문에 전처리 되기 전에 분리시켜야 함
+-> 명령어 2번 쓰면 비효율적. 한 번에 쓰기 위해서 파이프로 묶음
+
+파이프에 들어가는 함수들 -> 앞에 이름을 달아줌 => 이름__parameter
+
+
+2. GridSearCV : keras 할 때도 중요 : 노가다 안 하기 위해
+: 파라미터 튜닝 parameter tunining 을 함. -> 조합을 만들어서 테스트 한다.
+
+
+모델로 봤을 때 오늘 한 거 ㅅ: DT(Decision Tree)
+-1. Regressor
+-2. Classifier
+
+
+RF :  랜덤 포레스트: Random Forest
+
+XGBoost 를 이용해서 처리를 하려면 DMatrix를 만들어야 함. / 근데 안 해도 됨
+
+1. 전형 매트릭스(DMatrix)를 만들어서 하는 방법 <- 다른 언어들 + 파이썬
+2. 그거 없이 모델을 직접 구축해서? 하는 방법 <- python only
+
+
+트리계열 중요한 점
+1. 시각화
+2. 변수 중요도가 출력됨 (DT만 빼고)
+
+
+preprocessing
+
+ ** z점수 => (X-mean) / std
+3배수 : 99%
+2배수 : 95%
+1배수 : 68%
+
+robust -> IQR로 나눔
+
+
+평가
+1. 분류 : confusion_matrix(혼동행렬: 대각선으로 쭉 만든 것이 ... ) 
+평가를 했을 때 precision, recall, f1 -> 이걸 한 번에 출력할 수 있는 함수 : Classification_report()
+2. 예측 : mse(오차제곱), rmse(평균제곱근편차) : 작아야 좋은 것...?
